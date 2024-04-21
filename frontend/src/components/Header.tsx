@@ -18,6 +18,7 @@ const useStyles = createStyles((theme) => ({
         gap: "2rem",
         alignItems: "center",
         height: "100%",
+        width: "100%"
     },
 
     links: {
@@ -95,7 +96,7 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
         <Header height={60}>
             <Container className={classes.header}>
                 <ArrowUpCircle size={28} />
-                <Group spacing={5} className={classes.links}>
+                <Group spacing={25} className={classes.links}>
                     {items}
                 </Group>
                 <Burger

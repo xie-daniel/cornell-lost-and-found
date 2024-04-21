@@ -1,6 +1,6 @@
-import Weather from "../pages/Weather";
-import Counter from "../pages/Counter";
-import HomePage from "../pages/Home";
+import Report from "../pages/Report";
+import Login from "../pages/Login";
+import BrowsePage from "../pages/Browse";
 
 /**
  * TODO: Modify this constant to point to the URL of your backend.
@@ -23,17 +23,17 @@ export const PATHS: {
 }[] = [
     {
         link: "/",
-        label: "Home",
-        element: <HomePage />,
+        label: "Browse",
+        element: <BrowsePage />,
     },
     {
-        link: "/weather",
-        label: "Weather",
-        element: <Weather />,
+        link: "/report",
+        label: "Report",
+        element: <Report />,
     },
     {
-        link: "/counter",
-        label: "Counter",
-        element: <Counter />,
+        link: "/login",
+        label: "Login",
+        element: <Login />,
     },
 ];
