@@ -6,7 +6,7 @@ import { WeatherResponse } from "@full-stack/types";
 const app: Express = express();
 
 const hostname = "0.0.0.0";
-const port = 8080;
+const port = 5173;
 
 app.use(cors());
 app.use(express.json());
@@ -28,7 +28,12 @@ type LostAndFoundItem = {
 
 let lostItems: LostAndFoundItem[] = [];
 
+app.get("/", async (req, res) => {
+  console.log("received");
+});
+
 app.get("/lost-items", async (req, res) => {
+  console.log(req.body);
   res.json(lostItems);
 });
 
@@ -62,5 +67,5 @@ app.delete("/api/lost-items/:id", (req, res) => {
 });
 
 app.listen(port, hostname, () => {
-  console.log("Listening");
+  console.log(port + " Listening to this message");
 });
