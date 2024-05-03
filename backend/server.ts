@@ -6,7 +6,7 @@ import { WeatherResponse } from "@full-stack/types";
 const app: Express = express();
 
 const hostname = "0.0.0.0";
-const port = 5173;
+const port = 8080;
 
 app.use(cors());
 app.use(express.json());
@@ -28,13 +28,10 @@ type LostAndFoundItem = {
 
 let lostItems: LostAndFoundItem[] = [];
 
-app.get("/", async (req, res) => {
-  console.log("received");
-});
-
 app.get("/lost-items", async (req, res) => {
+  console.log("HELLO WORLD!");
   console.log(req.body);
-  res.json(lostItems);
+  res.json(["balls"]);
 });
 
 app.post("/lost-items", (req, res) => {

@@ -86,7 +86,7 @@ const BrowsePage = () => {
         }
     ]
 
-    const BACKEND_BASE_PATH = 'http://localhost:8080/'
+    const BACKEND_BASE_PATH = 'http://localhost:8080'
 
     let lostItems: Item[] = []
 
@@ -94,6 +94,7 @@ const BrowsePage = () => {
         const res = await fetch(`${BACKEND_BASE_PATH}/lost-items`);
         const d = await res.json();
         lostItems = d;
+        console.log(lostItems);
     };
 
     getLostItems();
