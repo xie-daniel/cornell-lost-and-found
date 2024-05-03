@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 client/.env
+
+service_account.json

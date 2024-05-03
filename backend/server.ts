@@ -25,6 +25,7 @@ type LostAndFoundItem = {
 };
 
 //replace later, for now just empty
+
 let lostItems: LostAndFoundItem[] = [];
 
 app.get("/lost-items", async (req, res) => {
