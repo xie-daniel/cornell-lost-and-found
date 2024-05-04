@@ -1,6 +1,8 @@
+import { signInWithGoogle } from '../../../backend/firebase';
+
 const Login = () => (
     <center>
-        <h1>Login</h1>
+        <button onClick={signInWithGoogle}>Sign In with Google</button>;
     </center>
 );
 
