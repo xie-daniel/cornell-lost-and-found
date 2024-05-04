@@ -22,6 +22,13 @@ const BrowsePage = () => {
         .then((d) => setLostItems(d));
         console.log("hi")
     }, []);
+    
+    function claimItem(id : string, name : string) {
+        fetch(`http://localhost:8080/api/lost-items/${id}`, {
+            method: 'PUT'
+        })
+        alert(`Successfully claimed ${name}!`)
+    }
 
     return (
     <div style={{display:"flex", justifyContent:"center", flexDirection: "column", alignItems: "center"}}>
@@ -34,7 +41,7 @@ const BrowsePage = () => {
                 <p>Claimed? {item.claimed ? "Yes" : "No"}</p>
                 <p>Description: {item.description}</p>
                 <div style={{position: "absolute", top: "25px", right: "25px"}}>
-                    {!item.claimed && <button>Claim</button>}
+                    {!item.claimed && <button onClick={() => claimItem(item.id, item.name)} >Claim</button>}
                 </div>
             </Card>)}
         </div>
