@@ -30,6 +30,13 @@ const BrowsePage = () => {
         alert(`Successfully claimed ${name}!`)
     }
 
+    function deleteItem(id : string, name : string) {
+        fetch(`http://localhost:8080/api/lost-items/${id}`, {
+            method: 'DELETE'
+        })
+        alert(`Successfully deleted ${name}!`)
+    }
+
     return (
     <div style={{display:"flex", justifyContent:"center", flexDirection: "column", alignItems: "center"}}>
         <h1>Browse Lost Items</h1>
@@ -42,6 +49,9 @@ const BrowsePage = () => {
                 <p>Description: {item.description}</p>
                 <div style={{position: "absolute", top: "25px", right: "25px"}}>
                     {!item.claimed && <button onClick={() => claimItem(item.id, item.name)} >Claim</button>}
+                </div>
+                <div style={{position: "absolute", bottom: "25px", right: "25px"}}>
+                    {item.claimed && <button style={{color:'red'}} onClick={() => deleteItem(item.id, item.name)} >Delete</button>}
                 </div>
             </Card>)}
         </div>
