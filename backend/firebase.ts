@@ -1,15 +1,12 @@
 import {
     initializeApp,
-    applicationDefault,
     cert,
-    ServiceAccount,
 } from "firebase-admin/app";
 
 import { getAuth, signInWithPopup, signOut } from 'firebase/auth';
 import { GoogleAuthProvider } from 'firebase/auth'; 
 import withFirebaseAuth from 'react-with-firebase-auth';
 import { getFirestore } from "firebase-admin/firestore";
-
 import serviceAccount from "./service_account.json";
 
 const leServiceAcct: any = serviceAccount;
