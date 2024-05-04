@@ -23,5 +23,8 @@
     "scripts": {
         "dev": "nodemon server.ts",
         "build": "tsc"
-    }
+    },
+    "keywords": [],
+    "author": "",
+    "description": ""
 }
