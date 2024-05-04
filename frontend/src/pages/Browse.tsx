@@ -6,11 +6,7 @@ type Item = {
     name: string;
     description: string;
     locationFound: string;
-    date: {
-        month: number;
-        day: number;
-        year: number;
-    };
+    date: string;
     claimed: boolean;
 }
 
@@ -34,7 +30,7 @@ const BrowsePage = () => {
             {lostItems.map((item) => <Card style={{border: "1px solid black", width: "600px", height: "250px", position: "relative"}}>
                 <strong>{item.name}</strong>
                 <p>Found at: {item.locationFound}</p>
-                <p>Found on: {item.date.month}/{item.date.day}/{item.date.year}</p>
+                <p>Found on: {item.date}</p>
                 <p>Claimed? {item.claimed ? "Yes" : "No"}</p>
                 <p>Description: {item.description}</p>
                 <div style={{position: "absolute", top: "25px", right: "25px"}}>
