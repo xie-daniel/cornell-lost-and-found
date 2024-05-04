@@ -1,23 +1,7 @@
 const Report = () => {
-
-    const result = fetch(
-        "lost-items",
-        // your init object might look like this
-        {
-          // HTTP request method
-          method: 'GET',
-          // Any request headers you want to add
-          headers: {
-            'content-type': 'application/json',
-          },
-          // Request body (remember to stringify!)
-          body: ""
-          // ... other settings
-        },
-      );
           
     return (
-        <form action="/lost-items" method="post">
+        <form action="lost-items" method="post">
             <div className="center">
                 <h1>    Submit Lost and Found Entry</h1>
 

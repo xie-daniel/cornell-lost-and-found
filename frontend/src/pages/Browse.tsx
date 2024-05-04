@@ -1,12 +1,5 @@
 import {Card} from "@mantine/core";
 import { useState, useEffect } from "react";
-// type Item = {
-//     itemName: string;
-//     location: string;
-//     dateReported: Date;
-//     claimed: boolean;
-//     description: string
-// }
 
 type Item = {
     id : string; 
@@ -25,15 +18,6 @@ const BrowsePage = () => {
 
     const BACKEND_BASE_PATH = 'http://localhost:8080'
 
-    // let lostItems: Item[] = []
-
-    // const getLostItems = async () => {
-    //     const res = await fetch(`${BACKEND_BASE_PATH}/lost-items`);
-    //     const d = await res.json();
-    //     lostItems = d;
-    //     console.log(lostItems);
-    // };
-
     const [lostItems, setLostItems] = useState<Item[]>([]);
 
     useEffect(() => {
@@ -42,7 +26,6 @@ const BrowsePage = () => {
         .then((d) => setLostItems(d));
         console.log("hi")
     }, []);
-    // getLostItems();
 
     return (
     <div style={{display:"flex", justifyContent:"center", flexDirection: "column", alignItems: "center"}}>
