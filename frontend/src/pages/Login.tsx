@@ -1,9 +1,14 @@
-import { signInWithGoogle } from '../../../backend/firebase';
+// import { signInWithGoogle } from '../../../backend/firebase';
 
-const Login = () => (
+
+const Login = () => {
+
+    return (
     <center>
-        <button onClick={signInWithGoogle}>Sign In with Google</button>;
+        <a href={"/"}>
+            <button > Sign In with Google </button>
+        </a>
     </center>
-);
+)};
 
 export default Login;

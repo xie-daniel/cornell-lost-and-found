@@ -2,6 +2,7 @@ import path from "path";
 import express, { Express } from "express";
 import cors from "cors";
 import { WeatherResponse } from "@full-stack/types";
+import { db } from "./firebase";
 
 const app: Express = express();
 
@@ -20,16 +21,39 @@ type LostAndFoundItem = {
   claimed: boolean;
 };
 
+const itemCollectionRef = db.collection("testing");
+
+const addItem = async (item: LostAndFoundItem) => {
+  const newDoc = itemCollectionRef.doc(item.id);
+  return await newDoc.set(item);
+};
+
 let lostItems: LostAndFoundItem[] = [];
 
-app.get("/lost-items", (req, res) => {
-  res.json(lostItems);
+app.get("/lost-items", async (req, res) => {
+  const allItems = await itemCollectionRef.get();
+  let items: LostAndFoundItem[] = [];
+
+  allItems.forEach((item) => items.push(item.data() as LostAndFoundItem));
+
+  res.status(200).send({
+    message: "SUCCESS: Got all items in the items collection.",
+    data: items,
+  });
 });
 
-app.post("/lost-items", (req, res) => {
+app.post("/lost-items", async (req, res) => {
   const newItem = req.body;
-  lostItems.push({ id: `${lostItems.length + 1}`, ...newItem, claimed: false });
-  res.json(lostItems);
+  const firebaseItem = {
+    id: `${Math.random()}`,
+    ...newItem,
+    claimed: false,
+  };
+  const newDoc = await itemCollectionRef.doc(firebaseItem.id).set(firebaseItem);
+  res.status(200).send({
+    message: "SUCCESS: Added new item to firebase.",
+  });
+  // add(firebaseItem);
 });
 
 // app.put("/api/lost-items/:id", (req, res) => {
@@ -44,28 +68,32 @@ app.post("/lost-items", (req, res) => {
 //   }
 // });
 
-app.put("/api/lost-items/:id", (req, res) => {
+app.put("/api/lost-items/:id", async (req, res) => {
   const itemId = req.params.id;
   const index = lostItems.findIndex((item) => item.id === itemId);
-  if (index !== -1) {
-    lostItems[index].claimed = true;
-    res.json(lostItems[index]);
-  } else {
-    res.status(404).json({ error: "Lost item not found" });
-  }
+  const snapshot = await itemCollectionRef
+    .doc(itemId)
+    .update({ claimed: true });
+  res.status(200).send({
+    message: "SUCCESS: update item to claimed",
+  });
 });
 
-app.delete("/api/lost-items/:id", (req, res) => {
+app.delete("/api/lost-items/:id", async (req, res) => {
   const itemId = req.params.id;
   const index = lostItems.findIndex((item) => item.id === itemId);
-  if (index !== -1) {
-    const deletedItem = lostItems.splice(index, 1)[0];
-    res.json(deletedItem);
-  } else {
-    res.status(404).json({ error: "Lost item not found" });
-  }
+  // if (index !== -1) {
+  //   const deletedItem = lostItems.splice(index, 1)[0];
+  //   res.json(deletedItem);
+  // } else {
+  //   res.status(404).json({ error: "Lost item not found" });
+  // }
+  const snapshot = await itemCollectionRef.doc(itemId).delete();
+  res.status(200).send({
+    message: "SUCCESS: update item to claimed",
+  });
 });
 
-app.listen(port, hostname, () => {
+app.listen(port, () => {
   console.log(port + " Listening to this message");
 });

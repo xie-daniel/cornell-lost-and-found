@@ -19,7 +19,7 @@ const BrowsePage = () => {
     useEffect(() => {
         fetch(`${BACKEND_BASE_PATH}/lost-items`)
         .then((res) => res.json())
-        .then((d) => setLostItems(d));
+        .then((d) => setLostItems(d.data));
         console.log("hi")
     }, []);
     
